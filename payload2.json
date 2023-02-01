@@ -1,0 +1,16 @@
+{
+    "lead": {
+      "email": "jane.doe@dummy.com",
+      "phone": "+00 123 89 65 23",
+      "address": "Main dead end 3, Bottleneck Gulch",
+      "firstname": "Jane",
+      "lastname": "Doe"
+  },
+    "rfq": {
+      "annualRevenue": 80000,
+      "enterpriseNumber": "0649885171",
+      "legalName": "example SA",
+      "naturalPerson": true,
+      "nacebelCodes": ["62010", "62020", "62030", "62090", "63110"]
+   }
+  }
