@@ -1,8 +1,6 @@
 import logging
-import time
-import math
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Header, HTTPException, Depends
 from starlette.middleware.cors import CORSMiddleware
 
 
@@ -30,13 +28,18 @@ class YagoChallengeApp(FastAPI):
 
 app = YagoChallengeApp()
 storage = FileStore()
+   
+async def verify_key(x_api_key: str = Header()):
+    if not x_api_key == params.YAGO_API_KEY:
+         raise HTTPException(status_code=400, detail="X-API-Key header invalid")
+    return x_api_key
 
 @app.get('/')
-def get_root():    
+def get_root():
     return {'Hello': 'World'}
 
 @app.post(YagoChallengeApp.PATH_RC_PRO, response_model=rc_pro.RCProRFQResponse)
-def post_rc_pro_quote(lead_rfq: rc_pro.RCProLeadRFQ):
+def post_rc_pro_quote(lead_rfq: rc_pro.RCProLeadRFQ, dependencies= Depends(verify_key)):
     lead = lead_rfq.lead
     rfq = lead_rfq.rfq
 
@@ -61,5 +64,5 @@ def post_rc_pro_quote(lead_rfq: rc_pro.RCProLeadRFQ):
         raise e
 
 @app.get(YagoChallengeApp.PATH_LEADS)
-def get_leads():
+def get_leads(dependencies= Depends(verify_key)):
     return storage.get_all()

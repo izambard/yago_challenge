@@ -4,9 +4,10 @@ import json
 from service.api import app, YagoChallengeApp
 from models.rc_pro import RCProQuote
 import tests.models.test_rc_pro as test_rc_pro
+import params
 
 client = TestClient(app)
-headers = {'Authorization': 'dummyToken'}
+headers = {'X-API-Key': params.YAGO_API_KEY}
         
 def validateJSON(jsonData):
     try:
