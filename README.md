@@ -1,5 +1,7 @@
 # Yago Challenge
 
+Repo for contribution to the [Yago Challenge](https://www.notion.so/Technical-challenge-a9bc5322e5a342129d849f128b0de1b9)
+
 # Environment installation
 
 Using [Anaconda](https://www.anaconda.com/products/individual#Downloads) prompt :
@@ -33,7 +35,7 @@ The `.env` file is NOT part of the code base versionisation system (do not put i
 
 Running REST API service : `$ uvicorn service.api:app --log-config logging_config.ini --port 80 --host localhost --env-file .env`
 
-Service can be called e.g. using `curl`: `$ curl "localhost/quotes/professional-liability/"  -H "Content-Type: application/json" -X POST --data @payload2.json`
+Service can be called e.g. using `curl`: `$ curl "localhost/quotes/professional-liability/"  -H "Content-Type: application/json" -H "X-API-KEY: MAGIC" -X POST --data @payload2.json`
 
 # Running the service in a Docker container:
 
